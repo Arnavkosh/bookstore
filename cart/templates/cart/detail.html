@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Your Cart</h1>
+<table class="cart-table"><thead><tr><th>Book</th><th>Qty</th><th>Price</th><th>Total</th><th></th></tr></thead><tbody>
+{% for item in cart %}
+<tr><td><a href="{{ item.book.get_absolute_url }}">{{ item.book.title }}</a></td><td>{{ item.quantity }}</td><td>{{ item.price }}</td><td>{{ item.total_price }}</td><td><a class="btn secondary" href="/cart/remove/{{ item.book.id }}/">Remove</a></td></tr>
+{% empty %}
+<tr><td colspan="5">Your cart is empty.</td></tr>
+{% endfor %}
+</tbody></table>
+<div style="display:flex;gap:1rem;justify-content:flex-end;margin-top:1rem;">
+<a class="btn secondary" href="/">Continue Shopping</a>
+{% if cart|length %}<a class="btn" href="/orders/create/">Proceed to Checkout</a>{% endif %}
+</div>
+{% endblock %}

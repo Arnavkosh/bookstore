@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arnav Kosh Book Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #eaeded;
+        }
+        /* Navbar */
+        .navbar {
+            background-color: #131921;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+        .navbar .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .search-bar {
+            flex: 1;
+            margin: 0 20px;
+            display: flex;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+        }
+        .search-bar button {
+            padding: 8px 15px;
+            border: none;
+            background: #febd69;
+            cursor: pointer;
+        }
+        .container {
+            padding: 20px;
+        }
+        /* Footer */
+        .footer {
+            background-color: #131921;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Arnav Kosh Book Store</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for books...">
+            <button><i class="fa fa-search"></i></button>
+        </div>
+        <div>
+            <a href="/">Home</a>
+            <a href="#">Cart</a>
+            <a href="#">Orders</a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 Arnav Kosh Book Store
+    </div>
+</body>
+</html>
