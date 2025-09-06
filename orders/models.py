@@ -20,3 +20,13 @@ class OrderItem(models.Model):
     quantity=models.PositiveIntegerField(default=1)
     def __str__(self): return f'{self.product}'
     def get_cost(self): return self.price*self.quantity
+class Payment(models.Model):
+    order_id = models.CharField(max_length=100, unique=True)
+    payment_id = models.CharField(max_length=100, blank=True, null=True)
+    signature = models.CharField(max_length=256, blank=True, null=True)
+    amount = models.IntegerField()   
+    status = models.CharField(max_length=20, default='created')  
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.order_id} - {self.status}"
