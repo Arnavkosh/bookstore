@@ -10,6 +10,7 @@ urlpatterns = [
 path('orders/',
 include(('orders.urls', 'orders'),
 namespace='orders')),
+  path('', include('pages.urls')),
 ]
 
 if settings.DEBUG:
