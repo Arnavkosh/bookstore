@@ -12,4 +12,4 @@ class Book(models.Model):
     class Meta: ordering=['-created']
     def __str__(self): return self.title
     def get_absolute_url(self): return reverse('shop:book_detail', args=[self.slug])
-image = models.ImageField(upload_to='books/', blank=True, null=True)
+
