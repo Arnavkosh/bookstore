@@ -6,6 +6,8 @@
         <div class="col-md-4">
             {% if book.cover %}
                 <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="img-fluid">
+            {% else %}
+                <img src="https://via.placeholder.com/250x250.png?text=No+Image" class="img-fluid" alt="No Image">
             {% endif %}
         </div>
         <div class="col-md-8">
@@ -15,18 +17,33 @@
             <h4 class="text-success">₹{{ book.price }}</h4>
 
             <div class="mt-3">
-                <button class="btn btn-primary btn-lg">
-                    <i class="fa fa-shopping-cart"></i> Add to Cart
-                </button>
-                <button class="btn btn-danger btn-lg">
-                    <i class="fa fa-bolt"></i> Buy Now
-                </button>
+                <!-- Add to Cart -->
+                <form action="{% url 'cart:cart_add' book.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="btn btn-lg"
+                        style="background-color:#FFD814; color:#111; font-weight:bold; border:none; padding:10px 20px; border-radius:8px; width:220px; margin-bottom:10px;">
+                        <i class="fa fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </form>
+
+                <!-- Buy Now -->
+                <form action="{% url 'cart:cart_add' book.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="buy_now" value="1">
+                    <button type="submit" class="btn btn-lg"
+                        style="background-color:#FFA41C; color:#111; font-weight:bold; border:none; padding:10px 20px; border-radius:8px; width:220px;">
+                        <i class="fa fa-bolt"></i> Buy Now
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 
     <div class="mt-4">
-        <a href="{% url 'book_list' %}" class="btn btn-secondary">⬅ Back to Books</a>
+        <a href="{% url 'shop:book_list' %}">← Back to Books</a>
+
     </div>
 </div>
 {% endblock %}
