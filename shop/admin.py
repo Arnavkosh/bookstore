@@ -3,7 +3,7 @@ from .models import Book
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display=('title','author','price','stock','created')
-    list_filter=('created',)
-    search_fields=('title','author','description')
-    prepopulated_fields={'slug':('title',)}
+    list_display = ('title', 'author', 'price', 'created_at')
+    search_fields = ('title', 'author')
+    list_filter = ('created_at',)
+    prepopulated_fields = {'slug': ('title',)}   
