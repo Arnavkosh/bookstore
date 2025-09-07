@@ -91,4 +91,7 @@ CART_SESSION_ID = "cart"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 RAZORPAY_KEY_ID = "rzp_test_REKoZdBDcIyVAQ"
+
+
+
 RAZORPAY_KEY_SECRET = "I6AP5qofDs0LbIQtPF4c8mGd"

@@ -1,0 +1,22 @@
+.btn-blue {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn-remove {
+    color: #fff;
+    background-color: #dc3545; /* bootstrap red */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-remove:hover {
+    background-color: #c82333; /* dark red on hover */
+    text-decoration: none;
+}
