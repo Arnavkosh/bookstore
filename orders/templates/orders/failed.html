@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Payment Failed</title>
-</head>
-<body>
-    <h2>Payment Failed ❌</h2>
-    <p>Something went wrong. Please try again.</p>
-    <a href="/orders/checkout/">Retry Payment</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="centered">
+  <h2>Payment failed</h2>
+  <p>{{ message|default:"Your payment could not be completed." }}</p>
+  <a class="btn btn-secondary" href="{% url 'orders:order_create' %}">Try Again</a>
+</div>
+{% endblock %}
+

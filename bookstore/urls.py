@@ -10,7 +10,7 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('orders/', include(('orders.urls', 'orders'), namespace='orders')),
     path('', include('pages.urls')),
-    path("orders/pay/", views.start_payment, name="start_payment"),
+    
 ]
 
 if settings.DEBUG:

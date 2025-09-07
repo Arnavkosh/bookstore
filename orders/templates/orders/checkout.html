@@ -1,35 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Checkout - My Bookstore</title>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-</head>
-<body>
-    <h2>Checkout</h2>
-    <p>Total: ₹{{ amount|floatformat:2 }}</p>
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Proceed to Payment</h2>
+    <p><b>Order ID:</b> {{ order.id }}</p>
+    <p><b>Total Amount:</b> ₹{{ order.total }}</p>
 
-    <button id="rzp-button1">Pay Now</button>
+    <button id="rzp-button" class="btn btn-success">Pay with Razorpay</button>
+</div>
 
-    <script>
-        var options = {
-            "key": "{{ key }}",
-            "amount": "{{ amount }}", 
-            "currency": "{{ currency }}",
-            "name": "My Bookstore",
-            "description": "Order Payment",
-            "order_id": "{{ order_id }}",
-            "handler": function (response){
-                window.location.href = "/orders/success/?payment_id=" + response.razorpay_payment_id;
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "{{ rzp_key }}",
+    "amount": "{{ amount_paise }}",
+    "currency": "INR",
+    "name": "Arnav Kosh Book Store",
+    "description": "Order Payment",
+    "order_id": "{{ order.razorpay_order_id }}",
+    "handler": function (response){
+        fetch("{% url 'orders:payment_success' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": "{{ csrf_token }}"
             },
-            "theme": {
-                "color": "#3399cc"
-            }
-        };
-        var rzp1 = new Razorpay(options);
-        document.getElementById('rzp-button1').onclick = function(e){
-            rzp1.open();
-            e.preventDefault();
-        }
-    </script>
-</body>
-</html>
+            body: new URLSearchParams({
+                "razorpay_payment_id": response.razorpay_payment_id,
+                "razorpay_order_id": response.razorpay_order_id,
+                "razorpay_signature": response.razorpay_signature
+            })
+        }).then(res => window.location.href="{% url 'orders:payment_success' %}");
+    },
+    "theme": {"color": "#3399cc"}
+};
+document.getElementById('rzp-button').onclick = function(e){
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+    e.preventDefault();
+}
+</script>
+{% endblock %}

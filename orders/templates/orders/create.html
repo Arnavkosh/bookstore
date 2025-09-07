@@ -1,27 +1,24 @@
-{% extends 'base.html' %}
-
-{% load static %}
-
+{% extends "base.html" %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-
 <div class="container mt-4">
     <h2>Checkout</h2>
 
-    <ul class="list-group mb-3">
+    <!-- Items -->
+    <h4>Your Cart:</h4>
+    <ul>
         {% for item in cart %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            {{ item.book.title }} (x{{ item.quantity }})
-            <span>{{ item.total_price }}</span>
-        </li>
+            <li>{{ item.book.title }} (x{{ item.quantity }}) - ₹{{ item.total_price }}</li>
         {% endfor %}
     </ul>
+    <p><b>Subtotal:</b> ₹{{ cart.get_total_price }}</p>
 
-    <h4>Total: {{ cart.get_total_price }}</h4>
+    <hr>
 
+    <!-- Shipping Form -->
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn-blue">Place Order</button>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Place Order</button>
     </form>
 </div>
 {% endblock %}

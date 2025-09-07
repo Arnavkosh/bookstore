@@ -1,8 +1,16 @@
 from django import forms
-class OrderCreateForm(forms.Form):
-    first_name=forms.CharField(max_length=50)
-    last_name=forms.CharField(max_length=50)
-    email=forms.EmailField()
-    address=forms.CharField(max_length=250)
-    city=forms.CharField(max_length=100)
-    postal_code=forms.CharField(max_length=20,required=False)
+from .models import Order
+
+
+class CheckoutForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = [
+            "full_name",
+            "email",
+            "phone",
+            "address_line1",
+            "address_line2",
+            "landmark",
+            "pincode",
+        ]

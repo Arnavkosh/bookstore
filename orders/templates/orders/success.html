@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Payment Success</title>
-</head>
-<body>
-    <h2>Payment Successful </h2>
-    <p>Your Payment ID: {{ payment_id }}</p>
-    <a href="/">Go to Home</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="centered">
+  <h2>Payment successful 🎉</h2>
+  <p>Thank you! Your order <strong>#{{ order.id }}</strong> has been placed.</p>
+  <a class="btn btn-primary" href="{% url 'shop:book_list' %}">Continue Shopping</a>
+</div>
+{% endblock %}
