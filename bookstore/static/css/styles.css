@@ -32,33 +32,56 @@ body {
     background-color: #f1f1f1;
 }
 
-/* Buttons */
+/* Universal button styling */
 .btn {
     display: inline-block;
-    padding: 8px 15px;
-    margin: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
     border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
     text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+/* Primary (Amazon yellow for Place Order) */
+.btn-primary {
+    background-color: #ff9900;
     color: #fff;
-    font-size: 14px;
-    transition: 0.3s;
+}
+.btn-primary:hover {
+    background-color: #e68a00;
 }
 
-.btn:hover {
-    opacity: 0.9;
+/* Secondary (blue for Proceed to Checkout, View Details) */
+.btn-secondary {
+    background-color: #0073e6;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #005bb5;
 }
 
-/* Primary button */
-.btn-remove {
-    background: #e74c3c;
+/* Danger (Remove) */
+.btn-danger {
+    background-color: #d9534f;
+    color: #fff;
+}
+.btn-danger:hover {
+    background-color: #c9302c;
 }
 
-.btn.secondary {
-    background: #3498db;
+/* Light (Back to Books, Continue Shopping) */
+.btn-light {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
 }
-
-.btn.primary {
-    background: #27ae60;
+.btn-light:hover {
+    background-color: #e0e0e0;
 }
 
 /* Cart actions */
